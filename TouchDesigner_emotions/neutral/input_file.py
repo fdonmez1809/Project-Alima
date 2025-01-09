@@ -2,7 +2,7 @@ import random
 
 def get_input():
     # Generate a random state and percentage
-    states = ["neutral", "fier"]
+    states = ["neutral", "disgust","sadness"]
     state = random.choice(states)
     percentage = f"{random.randint(50, 80)}%"  # Generate percentage between 50% and 80%
     return state, percentage
