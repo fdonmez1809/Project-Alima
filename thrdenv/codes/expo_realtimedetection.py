@@ -1,6 +1,13 @@
 from deepface.models.demography.Emotion import load_model
 import cv2
 import numpy as np
+from pythonosc import udp_client
+import time
+import random
+
+client = udp_client.SimpleUDPClient("145.93.53.187", 9000)  # Send messages to localhost on port 9000
+
+
 
 # Load the custom emotion recognition model
 model = load_model('finetuned_model.h5')
@@ -106,6 +113,14 @@ while cap.isOpened():
                 cv2.putText(frame, text, (10, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 1)
                 
                 y_offset += 25
+
+
+
+            output = emotion_confidence*0.5/100
+            print(float(output))
+
+            client.send_message("/heightofwave", float(output))
+            time.sleep(0.1)  # Delay to send every 100ms, for example
 
         except Exception as e:
             print(f"Error analyzing frame: {e}")
