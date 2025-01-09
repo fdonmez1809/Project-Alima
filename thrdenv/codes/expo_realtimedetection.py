@@ -1,9 +1,10 @@
 from deepface.models.demography.Emotion import load_model
 import cv2
 import numpy as np
-from pythonosc import udp_client
 import time
 import random
+from pythonosc import udp_client
+
 
 client = udp_client.SimpleUDPClient("145.93.53.187", 9000)  # Send messages to localhost on port 9000
 
