@@ -67,11 +67,11 @@ while cap.isOpened():
             predictions = model.predict(face_reshaped, verbose=0)
 
             # Print all emotions and their percentages in the terminal
-            print("Emotion Percentages:")
-            for i, label in enumerate(emotion_labels):
-                percentage = predictions[0][i] * 100
-                print(f"{label}: {percentage:.2f}%")
-            print("------")  # Separator between frames
+            # print("Emotion Percentages:")
+            # for i, label in enumerate(emotion_labels):
+            #     percentage = predictions[0][i] * 100
+            #     print(f"{label}: {percentage:.2f}%")
+            # print("------")  # Separator between frames
 
             # Get the dominant emotion
             dominant_emotion_idx = np.argmax(predictions)
@@ -117,8 +117,8 @@ while cap.isOpened():
 
 
 
-            # output = emotion_confidence*0.5/100
-            # print(float(output))
+            output = dominant_emotion
+            print((output))
 
             # client.send_message("/heightofwave", float(output))
             # time.sleep(0.1)  # Delay to send every 100ms, for example
