@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 import time
 import random
-from pythonosc import udp_client
+# from pythonosc import udp_client
 
 
 client = udp_client.SimpleUDPClient("145.93.53.187", 9000)  # Send messages to localhost on port 9000
@@ -117,11 +117,11 @@ while cap.isOpened():
 
 
 
-            output = emotion_confidence*0.5/100
-            print(float(output))
+            # output = emotion_confidence*0.5/100
+            # print(float(output))
 
-            client.send_message("/heightofwave", float(output))
-            time.sleep(0.1)  # Delay to send every 100ms, for example
+            # client.send_message("/heightofwave", float(output))
+            # time.sleep(0.1)  # Delay to send every 100ms, for example
 
         except Exception as e:
             print(f"Error analyzing frame: {e}")
