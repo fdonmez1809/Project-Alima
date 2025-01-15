@@ -39,7 +39,8 @@ face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_fronta
 
 # Set up full-screen window for display
 cv2.namedWindow("Emotion Detection", cv2.WINDOW_NORMAL)
-
+last_print_time = time.time()  # Time of the last print
+print_interval = 5  # Interval in seconds to print output
 # Real-time emotion detection loop
 while cap.isOpened():
     ret, frame = cap.read()
@@ -117,8 +118,11 @@ while cap.isOpened():
 
 
 
-            output = dominant_emotion
-            print((output))
+            current_time = time.time()
+            if current_time - last_print_time >= print_interval:
+                print(dominant_emotion)  # Print the dominant emotion
+                last_print_time = current_time  # Update the last print time
+
 
             # client.send_message("/heightofwave", float(output))
             # time.sleep(0.1)  # Delay to send every 100ms, for example
