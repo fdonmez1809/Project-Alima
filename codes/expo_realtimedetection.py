@@ -6,7 +6,7 @@ import random
 from pythonosc.udp_client import SimpleUDPClient
 
 
-td_ip = "145.93.53.56" # Replace with the IP of the machine running TouchDesigner
+td_ip = "145.93.52.147" # Replace with the IP of the machine running TouchDesigner
 td_port = 7000       # Port set in the OSC In DAT node
 
 # Create an OSC client
@@ -42,7 +42,8 @@ face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_fronta
 # Set up full-screen window for display
 cv2.namedWindow("Emotion Detection", cv2.WINDOW_NORMAL)
 last_print_time = time.time()  # Time of the last print
-print_interval = 5  # Interval in seconds to print    output
+print_interval = 0.1  # Interval in seconds to print    output
+
 # Real-time emotion detection loop
 while cap.isOpened():
     ret, frame = cap.read()
@@ -128,10 +129,7 @@ while cap.isOpened():
                 
                 # emotion_labels = ['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral']
                                         #0     1        2       3          4      5             6
-                if int(dominant_emotion_idx) in [0,1,2,3]: # fear, sad
-                    message_content = 0
-                elif int(dominant_emotion_idx) in [4,5,6]: # angry, suprise
-                    message_content = 1
+                message_content = int(dominant_emotion_idx)
                     
                 client.send_message(message_address, message_content)
                 

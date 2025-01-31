@@ -6,7 +6,7 @@ import random
 from pythonosc.udp_client import SimpleUDPClient
 
 
-td_ip = "145.93.53.56" # Replace with the IP of the machine running TouchDesigner
+td_ip = "145.93.52.147" # Replace with the IP of the machine running TouchDesigner
 td_port = 7000       # Port set in the OSC In DAT node
 
 # Create an OSC client
@@ -128,10 +128,14 @@ while cap.isOpened():
                 
                 # emotion_labels = ['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral']
                                         #0     1        2       3          4      5             6
-                if int(dominant_emotion_idx) in [0,1,2,3]: # fear, sad
+                if int(dominant_emotion_idx) in [0,1]: # fear, sad
                     message_content = 0
-                elif int(dominant_emotion_idx) in [4,5,6]: # angry, suprise
+                elif int(dominant_emotion_idx) in [2,3]:
                     message_content = 1
+                elif int(dominant_emotion_idx) in [4,5]: # angry, suprise
+                    message_content = 2
+                else: 
+                    message_content = 3
                     
                 client.send_message(message_address, message_content)
                 
